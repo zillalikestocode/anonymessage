@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Righteous&display=swap');
+@tailwind base;
+@tailwind component;
+@tailwind utilities;
+
+body {
+  @apply bg-black;
+  min-height: 100vh;
+  max-width: 100vw;
+}
