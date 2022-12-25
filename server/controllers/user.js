@@ -9,7 +9,7 @@ export const signIn = async (req, res)=>{
 		if(!oldUser) return res.status(400).json('user does not exist');
 		const correctPassword = await bcrypt.compare(password, oldUser.password)
 		if (!correctPassword) return res.status(400).json('incorrect password');
-		return res.status(200).json({oldUser})
+		return res.status(200).json(oldUser)
 
 	}catch(err){
 		return res.status(500).json('something went wrong')
@@ -23,12 +23,12 @@ export const signUp = async (req, res)=>{
 	try {
 		const alreadyExists = await User.findOne({username})
 		if (alreadyExists) return res.status(400).json('User Already Exists');
-		const hashedPassword = bcrypt.hash(password, 12) 
+		const hashedPassword = await bcrypt.hash(password, 12) 
 		const user = await User.create({username, password: hashedPassword})
 
-		return res.status(200).json({user})
+		return res.status(200).json(user)
 	}catch(err){
-		res.status(500).json("something went wrong")
+		return res.status(500).json("something went wrong")
 		console.log(err)
 	}
 }

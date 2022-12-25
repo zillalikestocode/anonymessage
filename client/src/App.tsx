@@ -7,11 +7,12 @@ import Landing from './components/Landing'
 import {RecoilRoot} from 'recoil'
 import {useLocation} from 'react-router-dom'
 import Dashboard from './components/Dashboard'
+import Room from './components/Room'
 
 function App() {
 	const location = useLocation()
 
-	const bg = location.pathname.includes('/dashboard') ? 'bg-black' : 'bg-[#121212]'
+	const bg = location.pathname !== '/' ? 'bg-black' : 'bg-[#121212]'
   
   return (
   	<RecoilRoot>
@@ -21,6 +22,7 @@ function App() {
       	<Route path="/login" element={<Login />} />
       	<Route path="/" element={<Landing />} />
       	<Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/:username/:id" element={<Room />} />
       </Routes>
     </div>
     </RecoilRoot>
