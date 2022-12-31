@@ -1,9 +1,12 @@
+import dotenv from 'dotenv'
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import userRoutes from './routes/user.js'
 import messageRoutes from './routes/message.js'
 import roomRoutes from './routes/room.js'
+
+dotenv.config()
 
 const app = express()
 
@@ -17,7 +20,7 @@ app.get('/', (req, res)=>{
 	res.send('Hi mom')
 })
 
-const url = 'mongodb+srv://godzilla:goddzilla@cluster0.jqntqyy.mongodb.net/?retryWrites=true&w=majority'
+const url = process.env.CONNECTION_URL
 const PORT = 5000
 
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})

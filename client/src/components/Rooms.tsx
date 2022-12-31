@@ -50,13 +50,13 @@ export default function () {
 							return (
 								<Link key={item.id} to={`/${user.username}/${item.id}`}><div className="relative rounded-md w-32 h-44 border-white p-5 border-2">
 									<h4 className="font-medium text-white font-['Barlow_Condensed'] truncate text-lg tracking-[.25em]">
-										{item.description.toUpperCase()}
+										{item?.description?.toUpperCase()}
 									</h4>
 									<span className="absolute bottom-3 right-3 text-sm text-indigo-600">
-										{item.messages.length}
+										{item?.messages?.length}
 									</span>
 									<span className="absolute bottom-3 left-3 text-sm text-white/50">
-										#{item.id}
+										#{item?.id}
 									</span>
 								</div></Link>
 							);
