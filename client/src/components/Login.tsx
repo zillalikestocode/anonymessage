@@ -43,6 +43,7 @@ const Login = () => {
 				const { data } = await signIn(details);
 				await localStorage.setItem("profile", JSON.stringify(data));
 			}
+			//@ts-ignore
 			setUser(JSON.parse(localStorage.getItem("profile")));
 		} catch (err) {
 			console.log(err);
