@@ -10,6 +10,7 @@ import { signUp, signIn } from "../api";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userState } from "../atoms/user";
+import Loader from './Loader'
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -18,6 +19,8 @@ const Login = () => {
 	const password = showPass ? "text" : "password";
 	const initial = { username: "", password: "" };
 	const [details, setDetails]: any = useState(initial);
+	const [loader, setLoader] = useState(false)
+	const [error, setError] = useState(null)
 
 	function resetState(e: any) {
 		e.preventDefault();
@@ -35,6 +38,7 @@ const Login = () => {
 	const [user, setUser] = useRecoilState(userState);
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
+		setLoader(true)
 		try {
 			if (state === "Sign Up") {
 				const { data } = await signUp(details);
@@ -43,10 +47,14 @@ const Login = () => {
 				const { data } = await signIn(details);
 				await localStorage.setItem("profile", JSON.stringify(data));
 			}
+			setLoader(false)
 			//@ts-ignore
 			setUser(JSON.parse(localStorage.getItem("profile")));
-		} catch (err) {
-			console.log(err);
+		} catch (err: any) {
+			if(err){
+				setError(err?.response?.data)
+			}
+			setLoader(false)
 		}
 	};
 	useEffect(() => {
@@ -57,6 +65,7 @@ const Login = () => {
 
 	return (
 		<div className="text-gray-300 h-full flex mt-16 justify-center items-center">
+		{loader && <Loader />}
 			<form
 				onSubmit={(e) => handleSubmit(e)}
 				className="p-5 flex-col items-center gap-5 flex rounded-lg"
@@ -137,6 +146,7 @@ const Login = () => {
 						<TbArrowNarrowRight fontSize={20} />
 					</button>
 				</div>
+					{error && <p className="text-red-600 text-lg text-center font-medium">{error}</p>}
 			</form>
 		</div>
 	);
