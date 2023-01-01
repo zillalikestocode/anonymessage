@@ -12,7 +12,7 @@ import Room from './components/Room'
 function App() {
 	const location = useLocation()
 
-	const bg = location.pathname !== '/' ? 'bg-black' : 'bg-[#121212]'
+	const bg = (location.pathname !== '/' && location.pathname !== '/login') ? 'bg-black' : 'bg-[#121212]'
   
   return (
   	<RecoilRoot>

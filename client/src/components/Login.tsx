@@ -71,7 +71,7 @@ const Login = () => {
 						value={details.username}
 						onChange={(e) => handleChange(e)}
 						type="text"
-						className="bg-black py-2 p-5  rounded-3xl focus:outline-none"
+						className="bg-black w-60 py-2 p-5  rounded-3xl focus:outline-none"
 						placeholder="username"
 					/>
 				</div>
@@ -82,7 +82,7 @@ const Login = () => {
 						value={details.password}
 						onChange={(e) => handleChange(e)}
 						type={password}
-						className="bg-black rounded-3xl focus:outline-none py-2 p-5"
+						className="bg-black w-60 rounded-3xl focus:outline-none py-2 p-5"
 						placeholder="password"
 					/>
 					<span
@@ -98,7 +98,7 @@ const Login = () => {
 						{state === "Sign Up" && (
 							<input
 								type={password}
-								className="bg-black rounded-3xl focus:outline-none py-2 p-5"
+								className="bg-black w-60 rounded-3xl focus:outline-none py-2 p-5"
 								placeholder="confirm password"
 							/>
 						)}
